@@ -5,7 +5,7 @@
   const { count, type, points } = $props();
 </script>
 
-<div class="flex flex-col gap-5 bg-gray-300 w-64 rounded-2xl p-4">
+<div class="flex flex-col gap-5 bg-gray-300 min-w-64 w-64 rounded-2xl p-4">
 
   <!-- delete and edit buttons -->
   <div class="flex gap-3">

@@ -7,7 +7,7 @@
 <div class="flex flex-col p-10 gap-10">
   <Button content="مجموعة جديدة" icon="Plus"/>
 
-  <div class="flex gap-6">
+  <div class="flex flex-wrap gap-6">
     <QuestionGroupCard type="اختيار من متعدد" count={10} points={40} />
     <QuestionGroupCard type="صح أو خطأ" count={7} points={15} />
     <QuestionGroupCard type="كلاسيكي" count={3} points={45} />
