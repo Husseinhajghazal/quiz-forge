@@ -16,6 +16,6 @@
     <QuestionGroupCard type="صح أو خطأ" count={7} points={15} />
     <QuestionGroupCard type="كلاسيكي" count={3} points={45} />
   </div>
-  <Textarea />
+  <!-- <Textarea /> -->
 </div>
 <NewQuestionGroupForm />

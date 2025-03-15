@@ -1,12 +1,14 @@
 <script>
   import IconButton from "../IconButton.svelte";
+  import TextInput from "../Inputs/TextInput.svelte";
   import LucideIcon from "../LucideIcon.svelte";
+  
   const { count, type, points } = $props();
-  const quantities = [10, 20, 30, 40, 50];
+  const quantities = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 </script>
 
 <div class="fixed left-0 right-0 top-0 bottom-0 flex justify-center items-center gap-5 bg-gray-500/60">
-  <div class="flex flex-col gap-10 h-96 bg-white p-5 rounded-3xl">
+  <div class="flex flex-col gap-10 bg-white p-5 rounded-3xl">
     
     <div class="flex justify-end">
       <IconButton icon='X' iconColor='red'/>
@@ -22,7 +24,7 @@
         {#each quantities as q}
           <div>
             <input class="hidden peer" id={`q-${q}`} type="radio" name="questionQuantity" value={q}>
-            <label class="block bg-gray-200 p-2 text-lg rounded-lg peer-checked:text-white peer-checked:bg-green-600" for={`q-${q}`}>{q}</label>
+            <label class="block bg-gray-200 p-4 text-xl rounded-lg peer-checked:text-white peer-checked:bg-green-600" for={`q-${q}`}>{q}</label>
           </div>
         {/each}
       </div>
@@ -60,6 +62,11 @@
           </label>
         </div>
       </div>
+    </div>
+
+    <div class="flex gap-4">
+      <TextInput name="groupPoints" label="علامة المجموعة" labelClass="text-green-600" divClass='flex-1'/>
+      <TextInput name="choicesCount" label="عدد الخيارات" labelClass="text-green-600" divClass='flex-1'/>
     </div>
 
   </div>

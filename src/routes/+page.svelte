@@ -8,8 +8,8 @@
 
 <div class="flex flex-col min-h-screen">
   <FormLine {globalStep} />
-  <div class="flex-1 px-24">
-    <!-- <CreateGroupsForm /> -->
+  <CreateGroupsForm />
+  <!-- <div class="flex-1 px-24">
     <div class="p-10 bg-white w-full h-64 rounded-4xl mt-10">
       <div
         class="w-full h-full border-green-600 border-dashed border-5 rounded-4xl"
@@ -17,7 +17,7 @@
         hi
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="w-full flex items-center justify-between px-24 mb-5">
     <Button
       content="الخطوة التالية"
