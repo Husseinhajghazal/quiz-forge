@@ -11,7 +11,7 @@
         <IconButton icon="Printer"/>
       </div>
       <div class="flex justify-center items-center">
-        <LucideIcon name="FileSpreadsheet" size={162}/>
+        <LucideIcon class="text-green-600" name="FileSpreadsheet" size={162}/>
       </div>
     </div>
   
@@ -20,7 +20,7 @@
         <IconButton icon="Printer"/>
       </div>
       <div class="flex justify-center items-center">
-        <LucideIcon name="FileSpreadsheet" size={162}/>
+        <LucideIcon class="text-green-600" name="FileSpreadsheet" size={162}/>
       </div>
     </div>
   </div>
