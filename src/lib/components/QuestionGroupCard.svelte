@@ -1,6 +1,7 @@
 <script>
+  import Button from "./Button.svelte";
+  import IconButton from "./IconButton.svelte";
   import LucideIcon from "./LucideIcon.svelte";
-
   const { count, type, points } = $props();
 </script>
 
@@ -8,8 +9,8 @@
 
   <!-- delete and edit buttons -->
   <div class="flex gap-3">
-    <LucideIcon name="Trash2" color="red" />
-    <LucideIcon name="Pencil" />
+    <Button icon="Trash2" iconColor="red"/>
+    <Button icon="Pencil" className="bg-transparent"/>
   </div>
 
   <div class="flex text-green-600 gap-1.5 text-xl">
