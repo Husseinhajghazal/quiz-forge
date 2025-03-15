@@ -17,7 +17,7 @@
         content="الخطوة التالية"
         className="bg-green-600 hover:bg-green-700"
       />
-      <Button content="الخطوة التالية" />
+      <Button content="الخطوة السابقة" />
     </div>
   {/if}
 </div>
