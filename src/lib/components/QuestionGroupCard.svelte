@@ -9,7 +9,7 @@
 >
   <div class="flex gap-3">
     <IconButton icon="Trash2" iconColor="red" />
-    <IconButton icon="Pencil" className="bg-transparent" />
+    <IconButton icon="Pencil" />
   </div>
 
   <div class="flex text-green-600 gap-1.5 text-xl">
