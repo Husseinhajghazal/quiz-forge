@@ -2,16 +2,18 @@
   import IconButton from "../IconButton.svelte";
   import TextInput from "../Inputs/TextInput.svelte";
   import LucideIcon from "../LucideIcon.svelte";
-  
-  const { count, type, points } = $props();
+  import {slide, fade} from "svelte/transition"
+
+  const { count, type, points, closeAction } = $props();
   const quantities = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+  
 </script>
 
-<div class="fixed left-0 right-0 top-0 bottom-0 flex justify-center items-center gap-5 bg-gray-500/60">
+<div transition:fade class="fixed left-0 right-0 top-0 bottom-0 flex justify-center items-center gap-5 bg-gray-500/60">
   <div class="flex flex-col gap-10 bg-white p-5 rounded-3xl">
     
     <div class="flex justify-end">
-      <IconButton icon='X' iconColor='red'/>
+      <IconButton icon='X' iconColor='red' onclick={closeAction}/>
     </div>
 
     <div class="flex flex-col gap-2">
