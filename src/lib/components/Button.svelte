@@ -1,12 +1,16 @@
 <script>
   import LucideIcon from "./LucideIcon.svelte";
 
-  const { content, className, icon } = $props();
+  const { content, className, icon, type = "button", ...other } = $props();
 </script>
 
 <button
-  class={`bg-green-600 hover:bg-green-700 duration-300 cursor-pointer px-4 w-fit py-3 text-white rounded-xl flex items-center gap-2 ${className}`}
+  class={`bg-gray-500 hover:bg-gray-600 duration-300 cursor-pointer px-4 w-fit py-3 text-white rounded-xl flex items-center gap-2 ${className}`}
+  {type}
+  {...other}
 >
-  <LucideIcon name={icon}/>
+  {#if icon}
+    <LucideIcon name={icon} />
+  {/if}
   {content}
 </button>
