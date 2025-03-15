@@ -7,6 +7,6 @@
 <button
   class={`bg-green-600 px-4 py-3 text-white rounded-xl flex items-center gap-2 ${className}`}
 >
+  <LucideIcon name={icon} />
   {content}
-  <LucideIcon name="Apple" />
 </button>
