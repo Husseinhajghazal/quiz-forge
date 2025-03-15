@@ -22,11 +22,11 @@
       >{label}</label
     >
   </div>
-  <input
+  <textarea
     {type}
     {name}
     id={name}
     class={`border-gray-500 rounded-xl hover:border-green-600 focus:border-green-600 focus:ring-0 p-2 duration-300 ${inputClass}`}
     {...other}
-  />
+  ></textarea>
 </div>
