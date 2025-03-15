@@ -1,12 +1,8 @@
 <script>
   import LucideIcon from "./LucideIcon.svelte";
-
-  const {icon, iconColor, ...other} = $props();
+  const { icon, iconColor, className, ...other } = $props();
 </script>
 
-<button
-  class={'duration-300 cursor-pointer'}
-  {...other}
->
-  <LucideIcon name={icon} color={iconColor}/>
+<button class={`duration-300 cursor-pointer ${className}`}>
+  <LucideIcon name={icon} color={iconColor} {...other} />
 </button>

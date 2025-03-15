@@ -18,9 +18,9 @@
     {#if icon}
       <LucideIcon name={icon} class="text-green-600" />
     {/if}
-    <label for={name} class={`font-semibold text-lg ${labelClass}`}
-      >{label}</label
-    >
+    <label for={name} class={`font-semibold text-lg ${labelClass}`}>
+      {label}
+    </label>
   </div>
   <input
     {type}
