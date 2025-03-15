@@ -2,10 +2,14 @@
   import Button from "$lib/components/Button.svelte";
   import LucideIcon from "$lib/components/LucideIcon.svelte";
   import QuestionGroupCard from "$lib/components/QuestionGroupCard.svelte";
+  import NewQuestionGroupForm from "./NewQuestionGroupForm.svelte";
+
+  let newGroup = $state(false);
+
 </script>
 
 <div class="flex flex-col p-10 gap-10">
-  <Button content="مجموعة جديدة" icon="Plus"/>
+  <Button content="مجموعة جديدة" icon="Plus" onClick={() => alert("ss")}/>
 
   <div class="flex flex-wrap gap-6">
     <QuestionGroupCard type="اختيار من متعدد" count={10} points={40} />
@@ -13,3 +17,4 @@
     <QuestionGroupCard type="كلاسيكي" count={3} points={45} />
   </div>
 </div>
+<NewQuestionGroupForm />

@@ -6,7 +6,6 @@
 
 <div class="flex flex-col gap-5 bg-gray-300 min-w-64 w-64 rounded-2xl p-4">
 
-  <!-- delete and edit buttons -->
   <div class="flex gap-3">
     <IconButton icon="Trash2" iconColor="red"/>
     <IconButton icon="Pencil" className="bg-transparent"/>
