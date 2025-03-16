@@ -1,4 +1,5 @@
 <script>
+  import { enhance } from "$app/forms";
   import { Button } from "$lib/components/Buttons";
 
   import {
@@ -8,6 +9,10 @@
     InfoForm,
     UploadForm,
   } from "$lib/components/Forms";
+  import { formHandler } from "$lib/functions/general.js";
+
+  import { uploadedFiles } from "../stores/files";
+  import { groups } from "../stores/group";
 
   let globalStep = $state(1);
 
@@ -22,6 +27,7 @@
   const reset = () => (globalStep = 1);
 
   const Pages = [UploadForm, CreateGroupsForm, InfoForm, DownloadForm];
+  const formAction = ["?/uploadForm", "?/createGroups", "?/enterInfo"];
 
   let CurrentForm = $derived(Pages[globalStep - 1]);
 
@@ -36,11 +42,33 @@
   {#if globalStep < 4}
     <div class="w-full flex items-center justify-between px-24 my-5">
       <Button content="الخطوة السابقة" onclick={prevStep} />
-      <Button
-        content="الخطوة التالية"
-        className="bg-green-600 hover:bg-green-700"
-        onclick={nextStep}
-      />
+      <form
+        use:enhance={() =>
+          async ({ result }) => {
+            formHandler(result);
+            if (result.type === "success") nextStep();
+          }}
+        action={formAction[globalStep - 1]}
+        method="post"
+      >
+        <input
+          type="text"
+          name="files"
+          hidden
+          value={JSON.stringify($uploadedFiles)}
+        />
+        <input
+          type="text"
+          name="groups"
+          hidden
+          value={JSON.stringify($groups)}
+        />
+        <Button
+          content="الخطوة التالية"
+          className="bg-green-600 hover:bg-green-700"
+          type="submit"
+        />
+      </form>
     </div>
   {:else}
     <div class="flex gap-10 justify-center mb-5">

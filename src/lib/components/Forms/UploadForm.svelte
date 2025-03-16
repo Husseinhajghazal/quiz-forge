@@ -3,19 +3,11 @@
   import LucideIcon from "$lib/components/LucideIcon.svelte";
 
   import { fly } from "svelte/transition";
-
-  import { writable } from "svelte/store";
-
-  let uploadedFiles = writable([]);
-
-  function handleFileChange(event) {
-    const files = Array.from(event.target.files);
-    uploadedFiles.update((current) => [...current, ...files]);
-  }
-
-  function removeFile(index) {
-    uploadedFiles.update((current) => current.filter((_, i) => i !== index));
-  }
+  import {
+    handleFileChange,
+    removeFile,
+    uploadedFiles,
+  } from "../../../stores/files";
 </script>
 
 <div class="p-10 bg-white w-full h-80 rounded-4xl mt-10">
@@ -33,7 +25,7 @@
     id="files"
     multiple
     hidden
-    on:change={handleFileChange}
+    onchange={handleFileChange}
   />
 </div>
 
@@ -57,7 +49,7 @@
         <IconButton
           icon="Trash2"
           iconColor="red"
-          onclick={() => removeFile(index)}
+          onclick={removeFile.bind(this, index)}
         />
       </div>
     </div>

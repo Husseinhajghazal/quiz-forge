@@ -3,18 +3,18 @@
   import LucideIcon from "$lib/components/LucideIcon.svelte";
   import { fly } from "svelte/transition";
   import { NewQuestionGroupForm } from "./Forms";
+  import { deleteGroup, editGroup } from "../../stores/group";
 
   let newGroupDialogue = $state(false);
 
-  const { count, type, points, choicesCount, editAction, deleteAction, index } =
-    $props();
+  const { count, type, points, choicesCount, index } = $props();
 
   function toggleNewGroupDialogue() {
     newGroupDialogue = !newGroupDialogue;
   }
 
   function addGroup(data) {
-    editAction(index, data);
+    editGroup(index, data);
     toggleNewGroupDialogue();
   }
 </script>
@@ -27,7 +27,7 @@
     <IconButton
       icon="Trash2"
       iconColor="red"
-      onclick={deleteAction.bind(this, index)}
+      onclick={deleteGroup.bind(this, index)}
     />
     <IconButton icon="Pencil" onclick={toggleNewGroupDialogue} />
   </div>

@@ -3,34 +3,12 @@
   import LucideIcon from "$lib/components/LucideIcon.svelte";
   import QuestionGroupCard from "$lib/components/QuestionGroupCard.svelte";
   import { NewQuestionGroupForm } from "$lib/components/Forms";
-  import { writable } from "svelte/store";
-
-  let newGroupDialogue = $state(false);
-  let groups = writable([]);
-
-  function toggleNewGroupDialogue() {
-    newGroupDialogue = !newGroupDialogue;
-  }
-
-  function addGroup(data) {
-    groups.update((g) => [...g, data]);
-    toggleNewGroupDialogue();
-  }
-
-  function editGroup(index, data) {
-    groups.update((g) => {
-      const updatedGroups = [...g];
-      updatedGroups[index] = data;
-      return updatedGroups;
-    });
-  }
-  function deleteGroup(index) {
-    groups.update((g) => {
-      const updatedGroups = [...g];
-      updatedGroups.splice(index, 1);
-      return updatedGroups;
-    });
-  }
+  import {
+    addGroup,
+    groups,
+    newGroupDialogue,
+    toggleNewGroupDialogue,
+  } from "../../../stores/group";
 </script>
 
 <div class="flex flex-col px-10 mt-10 gap-10">
@@ -42,26 +20,17 @@
   />
   <div class="flex flex-wrap gap-6">
     {#each $groups as { count, points, type, choicesCount }, index}
-      <QuestionGroupCard
-        {type}
-        {count}
-        {points}
-        {choicesCount}
-        {index}
-        editAction={editGroup}
-        deleteAction={deleteGroup}
-      />
+      <QuestionGroupCard {type} {count} {points} {choicesCount} {index} />
     {/each}
   </div>
 </div>
 
-{#if newGroupDialogue}
+{#if $newGroupDialogue}
   <NewQuestionGroupForm
     choicesCount={3}
     count={10}
     points={10}
     type="كلاسيكي"
-    closeAction={toggleNewGroupDialogue}
     addAction={addGroup}
   />
 {/if}
