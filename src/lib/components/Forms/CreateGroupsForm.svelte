@@ -31,6 +31,7 @@
     count={10}
     points={10}
     type="كلاسيكي"
+    closeAction={toggleNewGroupDialogue}
     addAction={addGroup}
   />
 {/if}

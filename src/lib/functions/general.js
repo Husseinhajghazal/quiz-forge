@@ -13,7 +13,7 @@ export const addToast = (
     duration: 5000,
     showProgress: true,
     theme: "light",
-    placement: "top-left",
+    placement: "top-right",
   });
 };
 

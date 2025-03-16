@@ -4,16 +4,15 @@
   import { TextInput } from "$lib/components/Inputs";
   import LucideIcon from "$lib/components/LucideIcon.svelte";
   import { fly, fade } from "svelte/transition";
-  import { toggleNewGroupDialogue } from "../../../stores/group";
 
-  let { count, type, points, choicesCount, addAction } = $props();
+  let { count, type, points, choicesCount, addAction, closeAction } = $props();
 
   const quantities = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 </script>
 
 <button
   type="button"
-  onclick={toggleNewGroupDialogue}
+  onclick={closeAction}
   aria-label="modal-background"
   transition:fade
   class="fixed left-0 right-0 top-0 bottom-0 cursor-pointer bg-gray-500/60"
@@ -24,7 +23,7 @@
   class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-5 rounded-3xl"
 >
   <div class="flex justify-end pb-3">
-    <IconButton icon="X" iconColor="red" onclick={toggleNewGroupDialogue} />
+    <IconButton icon="X" iconColor="red" onclick={closeAction} />
   </div>
 
   <div class="flex flex-col gap-5 divide-y-2 divide-gray-200">
