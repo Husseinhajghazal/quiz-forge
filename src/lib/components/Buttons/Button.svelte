@@ -1,5 +1,5 @@
 <script>
-  import LucideIcon from "./LucideIcon.svelte";
+  import LucideIcon from "../LucideIcon.svelte";
 
   const { content, className, icon, type = "button", ...other } = $props();
 </script>

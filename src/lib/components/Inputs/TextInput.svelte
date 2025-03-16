@@ -1,7 +1,7 @@
 <script>
   import LucideIcon from "../LucideIcon.svelte";
 
-  const {
+  let {
     type = "text",
     name,
     label,
@@ -9,12 +9,13 @@
     inputClass,
     labelClass,
     icon,
+    value = $bindable(),
     ...other
   } = $props();
 </script>
 
 <div class={`flex flex-col gap-2 ${divClass}`}>
-  <div class="flex gap-2 pr-3">
+  <div class="flex items-center gap-2 pr-3">
     {#if icon}
       <LucideIcon name={icon} class="text-green-600" />
     {/if}
@@ -23,6 +24,7 @@
     </label>
   </div>
   <input
+    bind:value
     {type}
     {name}
     id={name}
