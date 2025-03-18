@@ -39,7 +39,7 @@ export const actions = {
     };
   },
   enterInfo: async ({ request }) => {
-    const {} = Object.fromEntries(await request.formData());
+    const { metadata } = Object.fromEntries(await request.formData());
 
     return {
       title: "جيد الأن دع الباقي علينا",

@@ -60,3 +60,7 @@ export function deleteGroup(index) {
     return updatedGroups;
   });
 }
+
+export function resetGroups() {
+  groups.set([]);
+}

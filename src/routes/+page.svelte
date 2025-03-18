@@ -11,8 +11,9 @@
   } from "$lib/components/Forms";
   import { formHandler } from "$lib/functions/general.js";
 
-  import { uploadedFiles } from "../stores/files";
-  import { groups } from "../stores/group";
+  import { resetFiles, uploadedFiles } from "../stores/files";
+  import { groups, resetGroups } from "../stores/group";
+  import { formData } from "../stores/info";
 
   let globalStep = $state(1);
 
@@ -24,7 +25,11 @@
     if (globalStep > 1) globalStep--;
   };
 
-  const reset = () => (globalStep = 1);
+  const reset = () => {
+    resetFiles();
+    resetGroups();
+    globalStep = 1;
+  };
 
   const Pages = [UploadForm, CreateGroupsForm, InfoForm, DownloadForm];
   const formAction = ["?/uploadForm", "?/createGroups", "?/enterInfo"];
@@ -62,6 +67,12 @@
           name="groups"
           hidden
           value={JSON.stringify($groups)}
+        />
+        <input
+          type="text"
+          name="metadata"
+          hidden
+          value={JSON.stringify($formData)}
         />
         <Button
           content="الخطوة التالية"

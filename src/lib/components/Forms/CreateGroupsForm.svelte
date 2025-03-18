@@ -28,7 +28,7 @@
 {#if $newGroupDialogue}
   <NewQuestionGroupForm
     choicesCount={3}
-    count={10}
+    count={1}
     points={10}
     type="كلاسيكي"
     closeAction={toggleNewGroupDialogue}
