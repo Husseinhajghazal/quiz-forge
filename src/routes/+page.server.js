@@ -8,7 +8,6 @@ export const actions = {
     const filesData = JSON.parse(files);
 
     if (filesData.length < 1) {
-      console.log(1);
       return fail(404, {
         title: "قم برفع ملف",
         message: "على الأقل قم برفع ملف واحد",
@@ -32,12 +31,14 @@ export const actions = {
       });
     }
 
+    console.log(groupsData);
+
     return {
       title: "يبدو أنه الأسألة ستكون صعبة",
       message: "الأن قم بتعبئت المعلومات العامة اذا أردت",
     };
   },
-  enterInfo: async (event) => {
+  enterInfo: async ({ request }) => {
     const {} = Object.fromEntries(await request.formData());
 
     return {
