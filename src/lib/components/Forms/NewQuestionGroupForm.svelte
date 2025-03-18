@@ -7,7 +7,7 @@
 
   let { count, type, points, choicesCount, addAction, closeAction } = $props();
 
-  const quantities = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+  const quantities = [1, 2, 3, 4, 5];
 </script>
 
 <button
@@ -17,7 +17,6 @@
   transition:fade
   class="fixed left-0 right-0 top-0 bottom-0 cursor-pointer bg-gray-500/60"
 ></button>
-
 <div
   transition:fly={{ y: 300 }}
   class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-5 rounded-3xl"
@@ -32,7 +31,7 @@
         <LucideIcon name="CircleHelp" size={36} class="text-green-600" />
         <h2>عدد الأسئلة</h2>
       </div>
-      <div class="flex gap-2">
+      <div class="grid gap-2 grid-cols-5">
         {#each quantities as q}
           <div>
             <input
@@ -44,7 +43,7 @@
               value={q}
             />
             <label
-              class="cursor-pointer block bg-gray-200 p-4 text-xl rounded-lg peer-checked:text-white hover:bg-green-400 duration-300 peer-checked:bg-green-600"
+              class="cursor-pointer bg-gray-200 p-4 text-xl rounded-lg peer-checked:text-white hover:bg-green-400 duration-300 peer-checked:bg-green-600 items-center flex justify-center"
               for={`q-${q}`}>{q}</label
             >
           </div>

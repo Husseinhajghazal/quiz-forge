@@ -1,8 +1,9 @@
-import { writable } from "svelte/store";
+import { get, writable } from "svelte/store";
 
 export const uploadedFiles = writable([]);
 
 export function handleFileChange(event) {
+  console.log(event.target.files);
   const files = Array.from(event.target.files);
   uploadedFiles.update((current) => [...current, ...files]);
 }
