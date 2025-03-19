@@ -4,6 +4,7 @@
   import { TextInput } from "$lib/components/Inputs";
   import LucideIcon from "$lib/components/LucideIcon.svelte";
   import { fly, fade } from "svelte/transition";
+  import { groupsTypes } from "$lib/data";
 
   let { count, type, points, choicesCount, addAction, closeAction } = $props();
 
@@ -56,14 +57,14 @@
         <h2>نوع الأسئلة</h2>
       </div>
       <div class="flex gap-2">
-        {#each [{ id: "classic", label: "كلاسيكي", icon: "MessageSquare" }, { id: "yesno", label: "صح أو خطأ", icon: "Check" }, { id: "multiplechoice", label: "اختيار من متعدد", icon: "ListTodo" }] as option}
+        {#each groupsTypes as option}
           <div>
             <input
               class="hidden peer"
               id={option.id}
               type="radio"
               name="questionType"
-              value={option.label}
+              value={option.id}
               bind:group={type}
             />
             <label
@@ -86,7 +87,7 @@
         icon="FileDigit"
         divClass={type !== "اختيار من متعدد" && "col-span-2"}
       />
-      {#if type === "اختيار من متعدد"}
+      {#if type === "MULTIPLE_CHOICES"}
         <TextInput
           bind:value={choicesCount}
           type="number"
@@ -106,7 +107,14 @@
     </div>
   </div>
   <Button
-    onclick={() => addAction({ count, type, points, choicesCount })}
+    onclick={() =>
+      addAction({
+        count,
+        type,
+        name: groupsTypes.find((e) => e.id === type).label,
+        points,
+        choicesCount,
+      })}
     content="أنشاء"
     icon="Plus"
     className="mt-3 mx-auto bg-green-600 hover:bg-green-700"

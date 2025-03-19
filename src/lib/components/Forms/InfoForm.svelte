@@ -9,28 +9,33 @@
   <TextInput
     icon="School"
     label="اسم مركز التعليم"
+    name="school"
     onchange={(e) => changeInput("school", e.target.value)}
   />
   <TextInput
     icon="UserPen"
     label="اسم المعلم"
+    name="teacher"
     onchange={(e) => changeInput("teacher", e.target.value)}
   />
   <TextInput
     icon="CalendarClock"
     label="الوقت والتاريخ"
     type="datetime-local"
-    onchange={(e) => changeInput("date", e.target.value.replace("T", " "))}
+    name="date"
+    onchange={(e) => changeInput("date", e.target.value)}
   />
   <TextInput
     icon="TimerReset"
     label="مدة الامتحان (دقيقة)"
+    name="duration"
     onchange={(e) => changeInput("duration", e.target.value)}
   />
   <Textarea
     icon="NotebookPen"
     label="ملاحظة"
     divClass="col-span-2"
+    name="note"
     onchange={(e) => changeInput("note", e.target.value)}
   />
 </div>

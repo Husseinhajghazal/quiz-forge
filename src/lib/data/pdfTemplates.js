@@ -1,267 +1,315 @@
 export const questionTemplate = `<style>
-      div.file * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-      }
+  div.file {
+    dir: ltr;
+    background-color: white;
+    width: 210mm;
+    padding: 5mm;
+    font-family: 'Times New Roman', serif;
+    line-height: 1.4;
+  }
 
-      div.file {
-        dir: ltr;
-        background-color: white;
-        width: 210mm;
-        padding: 5mm;
-      }
+  .meta {
+    text-align: center;
+    margin-bottom: 8mm;
+  }
 
-      div.file .meta {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 5mm 0;
-      }
+  .meta .school {
+    font-size: 13mm;
+    font-weight: bold;
+    margin-bottom: 4mm;
+  }
 
-      .meta .school { font-size: 13mm; }
-      .meta .subject { font-size: 8mm; }
-      .meta .cont {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        padding-top: 5mm;
-      }
+  .meta-cont {
+    display: flex;
+    justify-content: space-between;
+    border-top: 0.5mm solid #ccc;
+    padding-top: 4mm;
+    margin: 0 10mm;
+  }
 
-      .main {
-        border-bottom: .5mm solid black;
-        border-top: .5mm solid black;
-        padding: 5mm !important;
-        display: flex;
-        flex-direction: column;
-        gap: 10mm;
-      }
+  .main-section {
+    border: 0.5mm solid #000;
+    margin: 3mm 0;
+    padding: 5mm !important;
+  }
 
-      .main .type h1 {
-        font-size: 6mm;
-      }
+  .section-title {
+    font-size: 6mm;
+    margin-bottom: 6mm;
+    text-decoration: underline;
+  }
 
-      .main .type .q {
-        font-size: 5mm;
-      }
+  .question-block {
+    margin-bottom: 8mm;
+  }
 
-      .main .classic p {
-        font-size: 5mm;
-        padding-bottom: 20mm;
-      }
+  /* Classical Questions */
+  .classical-question {
+    margin-bottom: 10mm;
+  }
 
-      .main .multiple, .main .truefalse {
-        display: flex;
-        flex-direction: column;
-        gap: 3mm;
-      }
+  .classical-question p {
+    font-size: 5mm;
+    margin-left: 5mm;
+  }
 
-      .main .type .choices {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5mm;
-        font-size: 4mm;
-      }
+  /* Multiple Choice */
+  .mcq-question {
+    margin-bottom: 8mm;
+  }
 
-      .footer {
-        display: flex;
-        flex-direction: column;
-        gap: 3mm;
-        padding: 5mm;
-      }
-    </style>
-      <!-- META -->
-      <div class="meta">
-        <p class="school"><%= metadata.school %></p>
-        <p class="subject"><%= metadata.subject %></p>
-        <div class="cont">
-          <div class="left">
-            <p class="student">student name:</p>
-            <p class="marks">marks:</p>
-          </div>
-          <div class="right">
-            <p class="time"><%= metadata.duration %> minutes</p>
-            <p class="date"><%= metadata.date %></p>
-          </div>
+  .mcq-choices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3mm;
+    margin-left: 8mm;
+    margin-top: 3mm;
+  }
+
+  /* True/False */
+  .tf-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5mm;
+  }
+
+  .tf-choices {
+    display: flex;
+    gap: 10mm;
+    margin-right: 15mm;
+  }
+
+  .classical-question, .mcq-question, .tf-question {
+    page-break-inside: avoid;
+  }
+
+  .footer {
+    border-top: 0.5mm solid #ccc;
+    padding-top: 5mm;
+    margin-top: 5mm;
+    display: flex;
+    flex-direction: column;
+    gap: 2mm;
+  }
+
+  .question-number {
+    display: inline-block;
+    min-width: 8mm;
+    font-weight: bold;
+  }
+
+  .teacher-note {
+    font-style: italic;
+    font-size: 4mm;
+  }
+</style>
+
+<div class="meta">
+  <p class="school"><%= metadata.school %></p>
+  <div class="meta-cont">
+    <div class="student-info">
+      <p>Student Name: __________________</p>
+      <p>Marks: _______ / _______</p>
+    </div>
+    <div class="exam-info">
+      <p>Time: <%= metadata.duration %> minutes</p>
+      <p>Date: <%= metadata.date %></p>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <!-- Classical Questions -->
+  <div class="main-section classical-section">
+    <h2 class="section-title">Answer the following questions:</h2>
+    <% questions.classical.forEach(function(q, i) { %>
+    <div class="classical-question">
+      <p><span class="question-number"><%= i+1 %>)</span> <%= q.question %></p>
+    </div>
+    <% }) %>
+  </div>
+
+  <!-- Multiple Choice -->
+  <div class="main-section mcq-section">
+    <h2 class="section-title">Choose the correct answer:</h2>
+    <% questions.multipleChoices.forEach(function(q, i) { %>
+    <div class="mcq-question">
+      <p><span class="question-number"><%= i+1 %>)</span> <%= q.question %></p>
+      <div class="mcq-choices">
+        <% Object.values(q.choices).forEach(function(a, i) { %>
+        <div class="choice">
+          <span class="question-number"><%= String.fromCharCode(65 + i) %>)</span> <%= a %>
         </div>
+        <% }) %>
       </div>
+    </div>
+    <% }) %>
+  </div>
 
-      <!-- MAIN -->
-      <div class="main">
-
-        <div class="type classic">
-          <h1>Answer the following questions:</h1>
-          <div class="questions">
-            <% questions.classical.forEach(function(q, i) { %>
-              <p><%= i+1 %>) <%= q.question %></p>
-            <% }) %>
-          </div>
-        </div>
-
-        <div class="type multiple">
-          <h1>Choose the correct answer:</h1>
-          
-          <% questions.multipleChoices.forEach(function(q, i) { %>
-          <div class="question">
-            <p class="q"><%= i+1 %>) <%= q.question %></p>
-            <div class="choices">
-              <% Object.values(q.choices).forEach(function(a, i) { %>
-                <p><%= i+1 %>) <%= a %></p>
-              <% }) %>
-            </div>
-          </div>
-          <% }) %>
-          
-        </div>
-        
-        <div class="type truefalse">
-          <h1>True or False?</h1>
-
-          <% questions.trueFalse.forEach(function(q, i) { %>
-            <div class="question">
-              <p class="q"><%= i+1 %>) <%= q.question %></p>
-              <div class="choices">
-                <div class="choices">
-                  <p>true</p>
-                  <p>false</p>
-                </div>
-              </div>
-            </div>
-          <% }) %>
-        </div>
+  <!-- True/False -->
+  <div class="main-section tf-section">
+    <h2 class="section-title">True or False?</h2>
+    <% questions.trueFalse.forEach(function(q, i) { %>
+    <div class="tf-question">
+      <p><span class="question-number"><%= i+1 %>)</span> <%= q.question %></p>
+      <div class="tf-choices">
+        <span>True</span>
+        <span>False</span>
       </div>
+    </div>
+    <% }) %>
+  </div>
+</div>
 
-      <!-- FOOTER -->
-       <div class="footer">
-        <p class="teacher"><%= metadata.teacher %></p>
-        <p class="note"><%= metadata.note %></p>
-       </div>`
-
-
+<div class="footer">
+  <p>Teacher: <%= metadata.teacher %></p>
+  <% if(metadata.note) { %>
+  <p class="teacher-note">Note: <%= metadata.note %></p>
+  <% } %>
+</div>`;
 
 export const answersTemplate = `<style>
-      div.file * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-      }
+  div.file {
+    dir: ltr;
+    background-color: white;
+    width: 210mm;
+    padding: 5mm;
+    font-family: 'Times New Roman', serif;
+    line-height: 1.4;
+  }
 
-      div.file {
-        dir: ltr;
-        background-color: white;
-        width: 210mm;
-        padding: 5mm;
-      }
+  .meta {
+    text-align: center;
+    margin-bottom: 8mm;
+  }
 
-      div.file .meta {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 5mm 0;
-      }
+  .meta .school {
+    font-size: 13mm;
+    font-weight: bold;
+    margin-bottom: 4mm;
+  }
 
-      .meta .school { font-size: 13mm; }
-      .meta .subject { font-size: 8mm; }
-      .meta .cont {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        padding-top: 5mm;
-      }
+  .meta-cont {
+    display: flex;
+    justify-content: space-between;
+    border-top: 0.5mm solid #ccc;
+    padding-top: 4mm;
+    margin: 0 10mm;
+  }
 
-      .main {
-        border-bottom: .5mm solid black;
-        border-top: .5mm solid black;
-        padding: 5mm !important;
-        display: flex;
-        flex-direction: column;
-        gap: 10mm;
-      }
+  .main-section {
+    border: 0.5mm solid #000;
+    margin: 3mm 0;
+    padding: 5mm !important;
+  }
 
-      .main .type h1 {
-        font-size: 6mm;
-      }
+  .section-title {
+    font-size: 6mm;
+    margin-bottom: 6mm;
+    text-decoration: underline;
+  }
 
-      .main .type .q {
-        font-size: 5mm;
-      }
+  .answer-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80mm, 1fr));
+    gap: 5mm;
+    padding: 0 5mm;
+  }
 
-      .main .classic p {
-        font-size: 5mm;
-      }
+  .answer-item {
+    font-size: 5mm;
+    padding: 3mm;
+    page-break-inside: avoid;
+  }
 
-      .main .multiple, .main .truefalse {
-        display: flex;
-        flex-direction: column;
-        gap: 3mm;
-      }
+  .answer-item strong {
+    display: inline-block;
+    min-width: 8mm;
+  }
 
-      .main .type .choices {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5mm;
-        font-size: 4mm;
-      }
+  .classical-question, .mcq-question, .tf-question {
+    page-break-inside: avoid;
+  }
 
-      .footer {
-        display: flex;
-        flex-direction: column;
-        gap: 3mm;
-        padding: 5mm;
-      }
-    </style>
-      <!-- META -->
-      <div class="meta">
-        <p class="school"><%= metadata.school %></p>
-        <p class="subject"><%= metadata.subject %></p>
-        <div class="cont">
-          <div class="left">
-            <p class="student">student name:</p>
-            <p class="marks">marks:</p>
-          </div>
-          <div class="right">
-            <p class="time"><%= metadata.duration %> minutes</p>
-            <p class="date"><%= metadata.date %></p>
-          </div>
-        </div>
+  .footer {
+    border-top: 0.5mm solid #ccc;
+    padding-top: 5mm;
+    margin-top: 5mm;
+    display: flex;
+    flex-direction: column;
+    gap: 2mm;
+  }
+
+  .teacher-info {
+    font-weight: bold;
+  }
+
+  .note {
+    font-style: italic;
+    font-size: 4mm;
+  }
+</style>
+
+<div class="meta">
+  <p class="school"><%= metadata.school %></p>
+  <div class="meta-cont">
+    <div class="student-info">
+      <p>Student Name: __________________</p>
+      <p>Marks: _______ / _______</p>
+    </div>
+    <div class="exam-info">
+      <p>Time: <%= metadata.duration %> minutes</p>
+      <p>Date: <%= metadata.date %></p>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="main-section">
+    <h2 class="section-title">Classical Questions Answers</h2>
+    <div class="answer-list">
+      <% questions.classical.forEach(function(q, i) { %>
+      <div class="answer-item">
+        <strong><%= i+1 %>)</strong> <%= q.answer %>
       </div>
+      <% }) %>
+    </div>
+  </div>
 
-      <!-- MAIN -->
-      <div class="main">
-
-        <div class="type classic">
-          <h1>Answers for the classical questions:</h1>
-          <div class="questions">
-            <% questions.classical.forEach(function(q, i) { %>
-              <p><%= i+1 %>) <%= q.answer %></p>
-            <% }) %>
-          </div>
-        </div>
-
-        <div class="type multiple">
-          <h1>Answers for multiple choice questions:</h1>
-          
-          <% questions.multipleChoices.forEach(function(q, i) { %>
-          <div class="question">
-            <p class="q"><%= i+1 %>) <%= q.answer %></p>
-          </div>
-          <% }) %>
-          
-        </div>
-        
-        <div class="type truefalse">
-          <h1>Answers for True or False questions:</h1>
-
-          <% questions.trueFalse.forEach(function(q, i) { %>
-            <div class="question">
-              <p class="q"><%= i+1 %>) <%= q.answer %></p>
-            </div>
-          <% }) %>
-        </div>
+  <div class="main-section">
+    <h2 class="section-title">Multiple Choice Answers</h2>
+    <div class="answer-list">
+      <% questions.multipleChoices.forEach(function(q, i) { %>
+      <div class="answer-item">
+        <strong><%= i+1 %>)</strong> <%= q.answer %>
       </div>
+      <% }) %>
+    </div>
+  </div>
 
-      <!-- FOOTER -->
-       <div class="footer">
-        <p class="teacher"><%= metadata.teacher %></p>
-        <p class="note"><%= metadata.note %></p>
-       </div>`
+  <div class="main-section">
+    <h2 class="section-title">True/False Answers</h2>
+    <div class="answer-list">
+      <% questions.trueFalse.forEach(function(q, i) { %>
+      <div class="answer-item">
+        <strong><%= i+1 %>)</strong> 
+        <span style="color: <%= q.answer === 'true' ? 'green' : 'red' %>">
+          <%= q.answer %>
+        </span>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="teacher-info">
+    <p>Teacher: <%= metadata.teacher %></p>
+  </div>
+  <% if(metadata.note) { %>
+  <div class="note">
+    <p><%= metadata.note %></p>
+  </div>
+  <% } %>
+</div>`;

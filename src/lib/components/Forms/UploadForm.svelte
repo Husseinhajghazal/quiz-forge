@@ -8,6 +8,7 @@
     removeFile,
     uploadedFiles,
   } from "../../../stores/files";
+  import { getContext } from "svelte";
 </script>
 
 <div class="p-10 bg-white w-full h-80 rounded-4xl mt-10">

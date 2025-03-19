@@ -7,7 +7,7 @@
 
   let newGroupDialogue = $state(false);
 
-  const { count, type, points, choicesCount, index } = $props();
+  const { count, type, points, name, choicesCount, index } = $props();
 
   function toggleNewGroupDialogue() {
     newGroupDialogue = !newGroupDialogue;
@@ -36,7 +36,7 @@
     <p>سؤال</p>
   </div>
   <div class="flex text-3xl">
-    <p>{type}</p>
+    <p>{name}</p>
   </div>
   <div class="flex gap-1.5 justify-end text-xl">
     <p>{points}</p>

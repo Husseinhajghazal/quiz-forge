@@ -2,49 +2,67 @@ import { fail } from "@sveltejs/kit";
 
 /** @satisfies {import('./$types').Actions} */
 export const actions = {
-  uploadForm: async ({ request }) => {
-    const { files } = Object.fromEntries(await request.formData());
+  uploadForm: async ({ request, cookies }) => {
+    const formData = await request.formData();
+    const files = formData.getAll("files");
 
-    const filesData = JSON.parse(files);
-
-    if (filesData.length < 1) {
+    if (files[0].type === "application/octet-stream") {
       return fail(404, {
         title: "قم برفع ملف",
         message: "على الأقل قم برفع ملف واحد",
       });
     }
 
+    // Serialize files data as JSON and set it in a cookie
+    cookies.set("files", JSON.stringify(files), {
+      path: "/",
+      httpOnly: true,
+      sameSite: "strict",
+      secure: true, // Set to true in production
+      maxAge: 60 * 60 * 24, // 1 day
+    });
+
     return {
       title: "ملفات رائعة",
-      message: "الأن قم بأنشاء مجموعات الأسالة",
+      message: "الآن قم بإنشاء مجموعات الأسئلة",
     };
   },
-  createGroups: async ({ request }) => {
+  createGroups: async ({ request, cookies }) => {
     const { groups } = Object.fromEntries(await request.formData());
-
     const groupsData = JSON.parse(groups);
 
     if (groupsData.length < 1) {
       return fail(404, {
-        title: "قم بأنشاء مجموعة أسالة",
-        message: "على الأقل قم بأنشاء مجموعة أسألة واحدة",
+        title: "قم بإنشاء مجموعة أسئلة",
+        message: "على الأقل قم بإنشاء مجموعة أسئلة واحدة",
       });
     }
 
-    console.log(groupsData);
+    // Serialize groups data as JSON and set it in a cookie
+    cookies.set("groups", JSON.stringify(groupsData), {
+      path: "/",
+      httpOnly: true,
+      sameSite: "strict",
+      secure: true, // Set to true in production
+      maxAge: 60 * 60 * 24, // 1 day
+    });
 
     return {
-      title: "يبدو أنه الأسألة ستكون صعبة",
-      message: "الأن قم بتعبئت المعلومات العامة اذا أردت",
+      title: "يبدو أن الأسئلة ستكون صعبة",
+      message: "الآن قم بتعبئة المعلومات العامة إذا أردت",
     };
   },
-  enterInfo: async ({ request }) => {
-    const { metadata } = Object.fromEntries(await request.formData());
+  enterInfo: async ({ request, cookies }) => {
+    // Retrieve groups and files from cookies
+    const groups = JSON.parse(cookies.get("groups") || "[]");
+    const files = JSON.parse(cookies.get("files") || "[]");
+
+    // Process the groups and files as needed
 
     return {
-      title: "جيد الأن دع الباقي علينا",
+      title: "جيد الآن دع الباقي علينا",
       message:
-        "سيتم الأن أنشاء ملفات الأسالة والأجوبة عن طريق الذكاء الأصطناعي",
+        "سيتم الآن إنشاء ملفات الأسئلة والأجوبة عن طريق الذكاء الاصطناعي",
     };
   },
 };

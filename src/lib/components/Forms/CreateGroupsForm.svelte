@@ -19,18 +19,26 @@
     onclick={toggleNewGroupDialogue}
   />
   <div class="flex flex-wrap gap-6">
-    {#each $groups as { count, points, type, choicesCount }, index}
-      <QuestionGroupCard {type} {count} {points} {choicesCount} {index} />
+    {#each $groups as { count, points, type, name, choicesCount }, index}
+      <QuestionGroupCard
+        {type}
+        {name}
+        {count}
+        {points}
+        {choicesCount}
+        {index}
+      />
     {/each}
   </div>
 </div>
+<input type="text" name="groups" hidden value={JSON.stringify($groups)} />
 
 {#if $newGroupDialogue}
   <NewQuestionGroupForm
     choicesCount={3}
     count={1}
     points={10}
-    type="كلاسيكي"
+    type="CLASSICAL"
     closeAction={toggleNewGroupDialogue}
     addAction={addGroup}
   />

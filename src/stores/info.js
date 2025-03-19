@@ -2,7 +2,6 @@ import { writable } from "svelte/store";
 
 export const formData = writable({
   school: "",
-  subject: "Mathematics",
   teacher: "",
   date: "",
   duration: "",
