@@ -111,12 +111,15 @@ export const actions = {
       // Cleanup stored files
       fileStore.delete(sessionId);
 
+      console.log(response);
+
       return {
         title: "جيد الآن دع الباقي علينا",
         message: "قم الأن بحل الأسئلة عن طريق الموقع او بتنزيلها كملف",
         res: response.data,
       };
     } catch (error) {
+      console.log(error);
       return fail(500, {
         message:
           "حصلت مشكلة أثناء معالجة الملفات: " +
