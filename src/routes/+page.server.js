@@ -95,7 +95,7 @@ export const actions = {
       }
     });
 
-    formData.append("lang", "arabic");
+    formData.append("lang", "english");
 
     try {
       const response = await axios.post(
