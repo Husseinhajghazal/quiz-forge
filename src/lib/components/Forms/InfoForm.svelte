@@ -29,6 +29,9 @@
     icon="TimerReset"
     label="مدة الامتحان (دقيقة)"
     name="duration"
+    type="number"
+    min="1"
+    oninput={(e) => (e.target.value = e.target.value.replace(/\D/g, ""))}
     onchange={(e) => changeInput("duration", e.target.value)}
   />
   <Textarea

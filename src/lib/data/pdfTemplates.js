@@ -123,7 +123,7 @@ export const questionTemplate = `<style>
   <!-- Classical Questions -->
   <div class="main-section classical-section">
     <h2 class="section-title">Answer the following questions:</h2>
-    <% questions.classical.forEach(function(q, i) { %>
+    <% questions.CLASSICAL.forEach(function(q, i) { %>
     <div class="classical-question">
       <p><span class="question-number"><%= i+1 %>)</span> <%= q.question %></p>
     </div>
@@ -133,7 +133,7 @@ export const questionTemplate = `<style>
   <!-- Multiple Choice -->
   <div class="main-section mcq-section">
     <h2 class="section-title">Choose the correct answer:</h2>
-    <% questions.multipleChoices.forEach(function(q, i) { %>
+    <% questions.MULTIPLE_CHOICES.forEach(function(q, i) { %>
     <div class="mcq-question">
       <p><span class="question-number"><%= i+1 %>)</span> <%= q.question %></p>
       <div class="mcq-choices">
@@ -150,7 +150,7 @@ export const questionTemplate = `<style>
   <!-- True/False -->
   <div class="main-section tf-section">
     <h2 class="section-title">True or False?</h2>
-    <% questions.trueFalse.forEach(function(q, i) { %>
+    <% questions.TRUE_FALSE.forEach(function(q, i) { %>
     <div class="tf-question">
       <p><span class="question-number"><%= i+1 %>)</span> <%= q.question %></p>
       <div class="tf-choices">
@@ -269,7 +269,7 @@ export const answersTemplate = `<style>
   <div class="main-section">
     <h2 class="section-title">Classical Questions Answers</h2>
     <div class="answer-list">
-      <% questions.classical.forEach(function(q, i) { %>
+      <% questions.CLASSICAL.forEach(function(q, i) { %>
       <div class="answer-item">
         <strong><%= i+1 %>)</strong> <%= q.answer %>
       </div>
@@ -280,7 +280,7 @@ export const answersTemplate = `<style>
   <div class="main-section">
     <h2 class="section-title">Multiple Choice Answers</h2>
     <div class="answer-list">
-      <% questions.multipleChoices.forEach(function(q, i) { %>
+      <% questions.MULTIPLE_CHOICES.forEach(function(q, i) { %>
       <div class="answer-item">
         <strong><%= i+1 %>)</strong> <%= q.answer %>
       </div>
@@ -291,7 +291,7 @@ export const answersTemplate = `<style>
   <div class="main-section">
     <h2 class="section-title">True/False Answers</h2>
     <div class="answer-list">
-      <% questions.trueFalse.forEach(function(q, i) { %>
+      <% questions.TRUE_FALSE.forEach(function(q, i) { %>
       <div class="answer-item">
         <strong><%= i+1 %>)</strong> 
         <span style="color: <%= q.answer === 'true' ? 'green' : 'red' %>">

@@ -85,7 +85,7 @@
         name="points"
         label="علامة المجموعة"
         icon="FileDigit"
-        divClass={type !== "اختيار من متعدد" && "col-span-2"}
+        divClass={type !== "MULTIPLE_CHOICES" && "col-span-2"}
       />
       {#if type === "MULTIPLE_CHOICES"}
         <TextInput

@@ -8,7 +8,7 @@
 
   const data = {
     metadata: get(formData),
-    questions,
+    questions: $questions,
   };
 
   function downloadQuestions() {

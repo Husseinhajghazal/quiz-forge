@@ -12,6 +12,7 @@
   import { writable } from "svelte/store";
   import { resetFiles, uploadedFiles } from "../stores/files";
   import { groups, resetGroups } from "../stores/group";
+  import { setQuestions } from "../stores/questions";
 
   let globalStep = $state(1);
   const loading = writable(false);
@@ -41,6 +42,9 @@
     await formHandler(result);
     if (result.type === "success") nextStep();
     loading.set(false);
+    if (globalStep === 4) {
+      setQuestions(result.data.res);
+    }
   };
 </script>
 
@@ -70,10 +74,10 @@
       </div>
     {:else}
       <div class="flex gap-10 justify-center mb-5">
-        <Button
+        <!-- <Button
           className="bg-green-600 hover:bg-green-700"
           content="إعادة إنشاء"
-        />
+        /> -->
         <Button content="العودة للبداية" onclick={reset} />
       </div>
     {/if}

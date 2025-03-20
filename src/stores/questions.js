@@ -1,85 +1,73 @@
 import { writable } from "svelte/store";
 
 export const questions = writable({
-  classical: [
+  CLASSICAL: [
     {
-      question: "What percentage of the human body is made up of water?",
-      answer: "60-70%",
-    },
-    {
-      question: "What are some symptoms of dehydration?",
-      answer: "Headaches, fatigue, dry mouth, confusion, and lack of focus.",
-    },
-    {
-      question: "What is the recommended daily water intake for adults?",
-      answer: "Six to eight glasses of water per day.",
-    },
-    {
-      question: "What is the color of urine that indicates proper hydration?",
-      answer: "Pale yellow.",
-    },
-    {
-      question: "What are some functions of water in the human body?",
+      question:
+        "What are some functions that water performs within the human body mentioned in the text?",
       answer:
-        "Regulates body temperature, lubricates joints, supplies cells with oxygen, removes waste, and protects the spinal cord.",
+        "Water helps to regulate the internal body temperature, lubricate and cushion joints, supply cells with oxygen and nutrients, get rid of waste in the body, and protect the spinal cord. It also helps with digestion and circulation.",
+    },
+    {
+      question:
+        "What are some symptoms of dehydration mentioned in the article?",
+      answer:
+        "Some symptoms of dehydration include headaches, feeling weak or dizzy, fatigue, dry mouth, dry lips, dry eyes, feelings of confusion, and lack of focus.",
+    },
+    {
+      question:
+        "What is the recommended daily water intake for adults as mentioned in the text?",
+      answer:
+        "The recommended daily water intake for adults is six to eight glasses of water per day.",
+    },
+    {
+      question:
+        "What are some strategies mentioned in the article for increasing one’s water consumption throughout the day?",
+      answer:
+        "Strategies include keeping a bottle of water with you during the day, adding a slice of lemon or lime to plain water if you don't like its taste, drinking a glass of water when you wake up, before each meal, and one hour before bed, keeping track of your water intake with phone reminders or a mobile app, and consuming foods high in water content such as apples, oranges, watermelon, cucumber, and lettuce.",
     },
   ],
-  trueFalse: [
+  MULTIPLE_CHOICES: [
+    {
+      question:
+        "What is one of the biggest challenges identified by teachers in staying properly hydrated?",
+      choices: [
+        "Lack of access to clean water",
+        "Lack of time to get water or refill water at work",
+      ],
+      answer: "Lack of time to get water or refill water at work",
+    },
+    {
+      question:
+        "What color should your urine ideally be to indicate proper hydration?",
+      choices: ["Dark yellow to amber", "Pale yellow"],
+      answer: "Pale yellow",
+    },
+  ],
+  TRUE_FALSE: [
     {
       question: "The human body is made up of 60-70% water.",
       answer: "true",
     },
     {
       question:
-        "Dehydration can negatively impact cognitive performance and productivity.",
+        "Even mild dehydration can negatively impact a person’s cognitive performance and productivity.",
       answer: "true",
     },
     {
-      question: "Dark yellow urine is a sign of proper hydration.",
+      question:
+        "A test for dehydration is the color of urine, where dark yellow to amber urine indicates proper hydration.",
       answer: "false",
     },
     {
       question:
-        "Teachers do not need to worry about hydration during their busy schedules.",
-      answer: "false",
-    },
-    {
-      question:
-        "Water helps regulate internal body temperature and lubricates joints.",
+        "The recommended daily water intake for adults is six to eight glasses of water per day.",
       answer: "true",
     },
-  ],
-  multipleChoices: [
-    {
-      question: "What percentage of the human body is made up of water?",
-      choices: ["40-50%", "60-70%", "80-90%", "20-30%"],
-      answer: "60-70%",
-    },
-    {
-      question: "Which of the following is NOT a symptom of dehydration?",
-      choices: ["Headaches", "Fatigue", "Clear urine", "Dry mouth"],
-      answer: "Clear urine",
-    },
-    {
-      question: "What is the recommended daily water intake for adults?",
-      choices: ["2-3 glasses", "4-5 glasses", "6-8 glasses", "10-12 glasses"],
-      answer: "6-8 glasses",
-    },
     {
       question:
-        "Which of the following is a function of water in the human body?",
-      choices: [
-        "Regulates body temperature",
-        "Lubricates joints",
-        "Supplies cells with oxygen",
-        "All of the above",
-      ],
-      answer: "All of the above",
-    },
-    {
-      question: "What is the color of urine that indicates dehydration?",
-      choices: ["Pale yellow", "Dark yellow to amber", "Clear", "Green"],
-      answer: "Dark yellow to amber",
+        "Drinking water does not have any impact on joint health because cartilage in joints does not need water for lubrication.",
+      answer: "false",
     },
   ],
 });
