@@ -121,45 +121,51 @@ export const questionTemplate = `<style>
 
 <div class="main">
   <!-- Classical Questions -->
-  <div class="main-section classical-section">
-    <h2 class="section-title">Answer the following questions:</h2>
-    <% questions.CLASSICAL.forEach(function(q, i) { %>
-    <div class="classical-question">
-      <p><span class="question-number"><%= i+1 %>)</span> <%= q.question %></p>
+  <% if (questions.CLASSICAL.length > 0) { %>
+    <div class="main-section classical-section">
+      <h2 class="section-title">Answer the following questions:</h2>
+      <% questions.CLASSICAL.forEach(function(q, i) { %>
+      <div class="classical-question">
+        <p><span class="question-number"><%= i+1 %>)</span> <%= q.question %></p>
+      </div>
+      <% }) %>
     </div>
-    <% }) %>
-  </div>
+  <% } %>
 
   <!-- Multiple Choice -->
-  <div class="main-section mcq-section">
-    <h2 class="section-title">Choose the correct answer:</h2>
-    <% questions.MULTIPLE_CHOICES.forEach(function(q, i) { %>
-    <div class="mcq-question">
-      <p><span class="question-number"><%= i+1 %>)</span> <%= q.question %></p>
-      <div class="mcq-choices">
-        <% Object.values(q.choices).forEach(function(a, i) { %>
-        <div class="choice">
-          <span class="question-number"><%= String.fromCharCode(65 + i) %>)</span> <%= a %>
+  <% if (questions.MULTIPLE_CHOICES.length > 0) { %>
+    <div class="main-section mcq-section">
+      <h2 class="section-title">Choose the correct answer:</h2>
+      <% questions.MULTIPLE_CHOICES.forEach(function(q, i) { %>
+      <div class="mcq-question">
+        <p><span class="question-number"><%= i+1 %>)</span> <%= q.question %></p>
+        <div class="mcq-choices">
+          <% Object.values(q.choices).forEach(function(a, i) { %>
+          <div class="choice">
+            <span class="question-number"><%= String.fromCharCode(65 + i) %>)</span> <%= a %>
+          </div>
+          <% }) %>
         </div>
-        <% }) %>
       </div>
+      <% }) %>
     </div>
-    <% }) %>
-  </div>
+  <% } %>
 
   <!-- True/False -->
-  <div class="main-section tf-section">
-    <h2 class="section-title">True or False?</h2>
-    <% questions.TRUE_FALSE.forEach(function(q, i) { %>
-    <div class="tf-question">
-      <p><span class="question-number"><%= i+1 %>)</span> <%= q.question %></p>
-      <div class="tf-choices">
-        <span>True</span>
-        <span>False</span>
+  <% if (questions.MULTIPLE_CHOICES.length > 0) { %>
+    <div class="main-section tf-section">
+      <h2 class="section-title">True or False?</h2>
+      <% questions.TRUE_FALSE.forEach(function(q, i) { %>
+      <div class="tf-question">
+        <p><span class="question-number"><%= i+1 %>)</span> <%= q.question %></p>
+        <div class="tf-choices">
+          <span>True</span>
+          <span>False</span>
+        </div>
       </div>
+      <% }) %>
     </div>
-    <% }) %>
-  </div>
+  <% } %>
 </div>
 
 <div class="footer">
@@ -266,41 +272,47 @@ export const answersTemplate = `<style>
 </div>
 
 <div class="main">
-  <div class="main-section">
-    <h2 class="section-title">Classical Questions Answers</h2>
-    <div class="answer-list">
-      <% questions.CLASSICAL.forEach(function(q, i) { %>
-      <div class="answer-item">
-        <strong><%= i+1 %>)</strong> <%= q.answer %>
+  <% if (questions.CLASSICAL.length > 0) { %>
+    <div class="main-section">
+      <h2 class="section-title">Classical Questions Answers</h2>
+      <div class="answer-list">
+        <% questions.CLASSICAL.forEach(function(q, i) { %>
+        <div class="answer-item">
+          <strong><%= i+1 %>)</strong> <%= q.answer %>
+        </div>
+        <% }) %>
       </div>
-      <% }) %>
     </div>
-  </div>
+  <% } %>
 
-  <div class="main-section">
-    <h2 class="section-title">Multiple Choice Answers</h2>
-    <div class="answer-list">
-      <% questions.MULTIPLE_CHOICES.forEach(function(q, i) { %>
-      <div class="answer-item">
-        <strong><%= i+1 %>)</strong> <%= q.answer %>
+  <% if (questions.MULTIPLE_CHOICES.length > 0) { %>
+    <div class="main-section">
+      <h2 class="section-title">Multiple Choice Answers</h2>
+      <div class="answer-list">
+        <% questions.MULTIPLE_CHOICES.forEach(function(q, i) { %>
+        <div class="answer-item">
+          <strong><%= i+1 %>)</strong> <%= q.answer %>
+        </div>
+        <% }) %>
       </div>
-      <% }) %>
     </div>
-  </div>
+  <% } %>
 
-  <div class="main-section">
-    <h2 class="section-title">True/False Answers</h2>
-    <div class="answer-list">
-      <% questions.TRUE_FALSE.forEach(function(q, i) { %>
-      <div class="answer-item">
-        <strong><%= i+1 %>)</strong> 
-        <span style="color: <%= q.answer === 'true' ? 'green' : 'red' %>">
-          <%= q.answer %>
-        </span>
+  <% if (questions.TRUE_FALSE.length > 0) { %>
+    <div class="main-section">
+      <h2 class="section-title">True/False Answers</h2>
+      <div class="answer-list">
+        <% questions.TRUE_FALSE.forEach(function(q, i) { %>
+        <div class="answer-item">
+          <strong><%= i+1 %>)</strong> 
+          <span style="color: <%= q.answer === 'true' ? 'green' : 'red' %>">
+            <%= q.answer %>
+          </span>
+        </div>
+        <% }) %>
       </div>
-      <% }) %>
     </div>
-  </div>
+  <% } %>
 </div>
 
 <div class="footer">
