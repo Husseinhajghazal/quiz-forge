@@ -40,11 +40,9 @@
 
   const handleSubmit = async ({ result }) => {
     await formHandler(result);
-    if (result.type === "success") nextStep();
     loading.set(false);
-    if (globalStep === 4) {
-      setQuestions(result.data.res);
-    }
+    if (globalStep === 3) setQuestions(result.data.res);
+    if (result.type === "success") nextStep();
   };
 </script>
 
